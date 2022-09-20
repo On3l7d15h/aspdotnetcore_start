@@ -20,7 +20,7 @@ I bring us three new project developed with the ASP.NET CORE tecnology, are thre
 
 ## 👹🏮ZodiacalSign - Signo del Zodiaco🏮👹
 
-<img title="" src="preview/preview1.png" alt="" width="848">
+![](preview/preview1.png)
 
 
 
@@ -36,7 +36,7 @@ I bring us three new project developed with the ASP.NET CORE tecnology, are thre
 
 ## 💰💸CoinConvertor - Convertidor de Monedas💸💰
 
-![](preview\preview2.png)
+![](preview/preview2.png)
 
 
 
@@ -54,7 +54,7 @@ I bring us three new project developed with the ASP.NET CORE tecnology, are thre
 
 ## ⏲💸MonthlyAmount - Monto Mensual💸⏲
 
-![](preview\preview3.png)
+![](preview/preview3.png)
 
 
 
