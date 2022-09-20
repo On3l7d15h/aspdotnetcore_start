@@ -1,0 +1,69 @@
+﻿@* Strong Typed *@
+@model Application.ViewModel.DataLendingViewModel;
+@{
+	ViewData["title"] = "Monthly Amount | Main";
+	string[] lending = {"Personal", "Automóvil", "Hipotecario"};
+}
+
+<!-- title and desc of app -->
+<div class="text-center my-2">
+	<h1>Monthly Amount</h1>
+</div>
+
+<!-- container or wrapper -->
+<div class="w-75 mx-auto rounded shadow p-3 d-flex flex-row justify-content-between my-2">
+
+	<!-- Form -->
+	<form style="width: 30%;" method="post" asp-controller="Main" asp-action="Index">
+		<section class="w-100 d-flex flex-column">
+			<label asp-for="Mount" class="form-label w-100">Monto: </label>
+			<input asp-for="Mount" type="number" step="any" class="form-control w-100" required/>
+		</section>
+
+		<!--  -->
+		<section class="w-100 d-flex flex-column">
+			<label asp-for="Lending" class="form-label w-100">Prestamo: </label>
+			<select asp-for="Lending" class="form-select w-100">
+				@for(int i = 1; i <= lending.Length; i++){
+					<option value="@i" >
+						@lending[i-1]
+					</option>
+				}	
+			</select>
+		</section>
+
+		<!-- -->
+		<section class="w-100 d-flex flex-column">
+			<label asp-for="Porcentage" class="form-label w-100">Tase de Interes: </label>
+			<input asp-for="Porcentage" value="@(Model?.Porcentage != null ? Model?.Porcentage : "")" type="text" class="form-control w-100" disabled />
+		</section>
+
+		<!--  -->
+		<section class="w-100 d-flex flex-column">
+			<label asp-for="Months" class="form-label w-100">Plazo mensual: </label>
+			<select asp-for="Months" class="form-select w-100">
+				@for(int i = 2; i <= 20; i++){
+					<option value="@i">
+						@(i*6)
+					</option>
+				}	
+			</select>
+		</section>
+
+		<section class="w-100 d-flex flex-column">
+			<label class="form-label w-100">Cuota Mensual: </label>
+			<input class="form-control w-100" value="@(Model?.Result is not null && Model?.Result != 0 ? Model?.Result : 0)" disabled/>
+		</section>
+
+		<button type="submit" class="btn btn-success mt-3 w-100">
+			Calculate
+		</button>
+	</form>
+
+	<div class="rounded bg-success bg-opacity-75 d-flex flex-row align-items-center align-items-center" style="width: 65%;">
+		<p class="text-white text-center">
+		Esta aplicación fue desarrollada con el fin de que usted pueda ver cuanto dinero pagaría mensualmente, dependiendo del prestamo adquirido.
+		Pruebalo sin ningún coste.
+		</p>
+	</div>
+</div>

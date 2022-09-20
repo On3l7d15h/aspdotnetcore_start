@@ -1,0 +1,74 @@
+﻿@* Strong Typed *@
+@model Application.ViewModel.CoinsDataViewModel;
+@{
+    ViewData["title"] = "CoinConvertor | Start";
+
+    string[] options = { "Peso", "Dólar", "Euro" };
+}
+
+<div class="container text-center">
+    <h1>
+        Coin Convertor
+    </h1>
+    <p class="text-muted">
+        Esta aplicación es un conversor de monedas, ¿Deseas convertir monedas de pesos a dólares? Esta es tu aplicación.
+    </p>
+</div>
+
+<div class="text-center d-flex flex-row w-75 justify-content-center align-items-center rounded p-3 shadow mx-auto">
+    
+    <form class='w-75' method="post" asp-controller="Main" asp-action="Index">
+        <div class="w-100 d-flex flex-row justify-content-evenly align-items-center my-2">
+            <label asp-for="CategoryFrom" class="form-label w-25 d-flex justify-content-start">
+                De:
+            </label>
+            <select asp-for="CategoryFrom" class="form-select w-100">
+                <option value="1">Peso</option>
+                <option value="2">Dólar</option>
+                <option value="3">Euro</option>
+            </select>
+        </div>
+
+        <div class="w-100 d-flex flex-row justify-content-evenly align-items-center my-2">
+            <label asp-for="CategoryTo" class="form-label w-25 d-flex justify-content-start">
+                A:
+            </label>
+            <select asp-for="CategoryTo" class="form-select w-100">
+                <option value="3">Euro</option>
+                <option value="2">Dólar</option>
+                <option value="1">Peso</option>
+            </select>
+        </div>
+
+        <div class="w-100 d-flex flex-row justify-content-evenly align-items-center my-2">
+            <label asp-for="Quantity" class="form-label w-25 d-flex justify-content-start">
+                Cantidad:
+            </label>
+            <input asp-for="Quantity" type="number" step='any' class="form-control w-100" required/>
+        </div>
+
+       
+
+        <button type="submit" class="btn btn-primary btn-opacity-50">
+           Convert
+        </button>
+    </form>
+
+     <div class="w-75 bg-primary bg-opacity-50 m-2 rounded text-white">
+         <h4>Resultados:</h4>
+            @if(Model?.Result != null && (double)Model.Result != 0.000)
+            {
+                <h5> 
+                    @Model?.Quantity 
+                    @options[Model?.CategoryFrom == null ? 0 : (int)Model?.CategoryFrom - 1]@(Model?.Quantity == 1 ? "" : options[Model?.CategoryFrom == null ? 0 : (int)Model?.CategoryFrom - 1] == "Dólar" ? "es" : "s") 
+                    es igual a 
+                    @Model?.Result 
+                    @options[Model?.CategoryTo == null ? 0 : (int)Model?.CategoryTo - 1]@(Model?.Result == 1 ? "" : options[Model?.CategoryFrom == null ? 0 : (int)Model?.CategoryFrom - 1] != "Dólar" ? "es" : "s") 
+               </h5>
+            } 
+            else
+            {
+                <h5>Ninguna conversión...</h5>
+            }
+     </div>
+</div>
